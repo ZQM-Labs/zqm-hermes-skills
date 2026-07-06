@@ -4,7 +4,7 @@ Shared Hermes skills snapshot for the ZQM Windows homelab and `ZQM-Computing` Gi
 
 ## What’s inside
 
-- **All installed local skills** from `C:\Users\zqmco\AppData\Local\hermes\skills\`
+- **All installed local skills** from `C:\Users\zqmco\AppData\Local\hermes\skills`
 - **ZQM-local additions:**
   - `productivity/windows-lan-investigator` — evidence-gathering playbook for Windows LAN hosts
   - `productivity/zqm-local-setup` — entry-point skill routing for local setup, LAN investigation, and GitHub hygiene
@@ -23,53 +23,25 @@ Shared Hermes skills snapshot for the ZQM Windows homelab and `ZQM-Computing` Gi
 | Localhost port conflicts / local server launch | `localhost-management` |
 | Full LAN host investigation | `windows-lan-investigator` |
 | Git auth / `gh` CLI / private repo edits | `zqm-github-management` |
-- Repo naming / README / cleanup / commit discipline | `zqm-repo-hygiene` |
-- PR workflow / branch strategy | `github-pr-workflow` |
-- ZQM environment entry point | `zqm-local-setup` |
+| Repo naming / README / cleanup / commit discipline | `zqm-repo-hygiene` |
+| PR workflow / branch strategy | `github-pr-workflow` |
+| ZQM environment entry point | `zqm-local-setup` |
 
 ## Consuming this library
 
 ```bash
-# Clone once
 git clone https://github.com/ZQM-Computing/zqm-hermes-skills.git
-
-# Symlink or copy into Hermes skills dir
-# Windows example:
-mklink /D "%LOCALAPPDATA%\hermes\skills" "C:\path\to\zqm-hermes-skills\skills"
 ```
 
 Or cherry-pick individual skills by copying their folders into `~/.hermes/skills/`.
 
-## Structure
+## Library size
 
-```
-skills/
-  apple/                     # macOS-only; not relevant to ZQM
-  autonomous-ai-agents/
-  cli/
-  computer-use/
-  creative/
-  data-science/
-  devops/
-  dogfood/
-  email/
-  github/
-  media/
-  mlops/
-  note-taking/
-  productivity/              # ZQM-local additions live here
-  research/
-  smart-home/
-  social-media/
-  software-development/
-  yuanbao/
-```
+Skills committed: 3
 
 ## Maintenance
 
-- Update local skills under `C:\Users\zqmco\AppData\Local\hermes\skills\`
-- Snapshot changes by re-syncing into this repo
-- See `zqm-local-setup` for the standard order of operations
+Run `sync-skills.sh` from this repo to update the snapshot from the local Hermes skills directory.
 
 ## License
 
