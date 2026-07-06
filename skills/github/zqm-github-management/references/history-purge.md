@@ -34,7 +34,7 @@ Write the replacement rules as a plain text file. Do not rely on bash process su
 
 ```bash
 cat > C:/Users/zqmco/zqm-localhost-findings-purge/.filter-patterns.txt <<EOF
-regex:344SW00DL4nd!==>REDACTED
+regex:REDACTED==>REDACTED
 EOF
 ```
 
@@ -52,7 +52,7 @@ git filter-repo --path-glob '*.md' --replace-text ./.filter-patterns.txt
 Confirm:
 
 ```bash
-git log --all -S '344SW00DL4nd!' --oneline
+git log --all -S 'REDACTED' --oneline
 # expected: empty output
 ```
 
