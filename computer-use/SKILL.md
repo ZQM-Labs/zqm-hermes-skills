@@ -211,7 +211,6 @@ in your conversation context.
 | Anything else weird | **First action: ask the user to run `hermes computer-use doctor`.** It runs the cua-driver `health_report` MCP tool and prints a structured per-check matrix. Their output tells you (and them) exactly what's wrong |
 
 ## When NOT to use `computer_use`
-
 - **Web automation you can do via `browser_*` tools** — those use a
   real headless Chromium and are more reliable than driving the user's
   GUI browser. Reach for `computer_use` specifically when the task
@@ -222,6 +221,28 @@ in your conversation context.
   `type` into an editor window.
 - **Shell commands** — use `terminal`, not `type` into Terminal.app /
   Windows Terminal / gnome-terminal.
+
+## Proactively use it (don't fall into shell-only mode)
+On a desktop host the tool is installed on, do NOT default to pure-terminal
+workflows when a GUI/visual-verification step is involved. Triggers:
+- **Confirming a UAC / permission prompt actually appeared** — `capture` the
+  desktop and look, instead of guessing whether an elevated launch succeeded.
+- **Driving a native app** the shell can't (File Explorer, Settings, a GUI
+  installer, tray apps).
+- **Verifying a visual state** the shell can't express (a window opened, an
+  icon appeared, an app is foreground).
+- **Cross-checking shell claims visually** — e.g. after mounting a disk,
+  `capture` File Explorer to confirm the new drive letter shows, as a second
+  verification channel alongside `Get-Volume`.
+- Privileged (admin) launches that popped a UAC prompt: use `capture` to confirm
+  the prompt actually appeared / the change took effect. For the safe elevated-launch
+  workflow itself (self-logging, re-verify-after-elevation), see the
+  `windows-elevated-actions` skill.
+Loop is ALWAYS: `capture` (mode=som) -> act by `element=` index -> re-`capture`
+to verify. A full audit once ran shell-only and never touched the desktop tool
+even though it was installed and would have helped verify elevation steps —
+don't repeat that.
+
 
 ## Going deeper — read the cua-driver skill pack
 
