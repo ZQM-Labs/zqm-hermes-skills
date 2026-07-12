@@ -1,14 +1,14 @@
 ---
 name: python-debugpy
-description: "Use when debugging Python on Windows or remotely. Covers pdb REPL, debugpy DAP, remote-pdb for Windows services/daemons, and Hermes-specific subprocess/agent debugging recipes."
+description: "Debug Python: pdb REPL + debugpy remote (DAP)."
 version: 1.0.0
 author: Hermes Agent
 license: MIT
-platforms: [linux, macos, windows]
+platforms: [linux, macos]
 metadata:
   hermes:
     tags: [debugging, python, pdb, debugpy, breakpoints, dap, post-mortem]
-    related_skills: [systematic-debugging, node-inspect-debugger, localhost-management]
+    related_skills: [systematic-debugging, node-inspect-debugger, debugging-hermes-tui-commands]
 ---
 
 # Python Debugger (pdb + debugpy)

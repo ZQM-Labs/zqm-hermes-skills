@@ -72,6 +72,13 @@ can save a round-trip by asking for the post-action capture inline:
 computer_use(action="click", element=7, capture_after=True)
 ```
 
+> **HARD RULE — verify, don't claim.** The action's own return (e.g. a click
+> ACK) does NOT prove the UI changed. Always re-capture after a state-changing
+> action and *read* the resulting elements/state before reporting success.
+> Never say "clicked X" or "opened Y" from the action return alone — prove it
+> from the post-capture AX tree or screenshot. (Same discipline as the
+> VERIFY EVERY CLAIM rule you apply to shell output.)
+
 ## Capture modes
 
 | `mode` | Returns | Best for |
@@ -178,6 +185,35 @@ with `write_file` or the terminal (`base64 -d`).
 On CLI, you can just describe what you see — the screenshot data stays
 in your conversation context.
 
+## Windows-specific gotchas (verified on a live Windows 11 host)
+
+These were learned the hard way — add them to the mental checklist.
+
+- **The desktop shell IS `explorer.exe`.** `capture(app="screen")` resolves to
+  `explorer.exe` and returns the Desktop *icons* (Recycle Bin, folder
+  shortcuts, etc.) as `ListItem` elements — NOT a separate "desktop surface".
+  To click a desktop icon, target its `element=` index from that capture.
+- **Clicks are user-gated.** A `click`/`double_click`/`drag` may return
+  `{"error": "denied by user", "action": "click"}`. This is a consent gate,
+  NOT a tool failure. **Do not retry, do not rephrase, do not route around it.**
+  Stop the desktop workflow, report that the click was denied, and wait for the
+  user to approve or redirect. (Repeated click attempts after a denial waste a
+  turn and erode trust.)
+- **`capture(app=...)` needs a foreground window, not just a live process.**
+  `list_apps` may list an app (e.g. "Microsoft Edge") yet `capture(app="Microsoft Edge")`
+  returns *"no on-screen window matched"* if that app has no frontmost window in
+  the current session. cua-driver matches the **frontmost window** of the named
+  app, not the process alone. If you get that error, capture `app="screen"` to
+  see what's actually on top, or ask the user to bring the target window forward.
+- **UAC / elevated launches.** If a click or `key` triggers a UAC prompt, you'll
+  see it on the next `capture` — confirm it appeared, but do NOT click it
+  yourself (that's a gated action). For the safe elevated-launch workflow, see
+  `windows-elevated-actions`.
+- **Session 0 trap.** If `capture` returns empty / "no on-screen window" while
+  you're on an SSH/WSL session, you're likely in Session 0 (no interactive
+  desktop). The interactive desktop is a different session — ask the user to
+  run `hermes computer-use doctor` for the Windows deep-dive.
+
 ## Safety — these are hard rules
 
 - **Never click permission dialogs, password prompts, payment UI, 2FA
@@ -211,7 +247,6 @@ in your conversation context.
 | Anything else weird | **First action: ask the user to run `hermes computer-use doctor`.** It runs the cua-driver `health_report` MCP tool and prints a structured per-check matrix. Their output tells you (and them) exactly what's wrong |
 
 ## When NOT to use `computer_use`
-
 - **Web automation you can do via `browser_*` tools** — those use a
   real headless Chromium and are more reliable than driving the user's
   GUI browser. Reach for `computer_use` specifically when the task
@@ -222,6 +257,28 @@ in your conversation context.
   `type` into an editor window.
 - **Shell commands** — use `terminal`, not `type` into Terminal.app /
   Windows Terminal / gnome-terminal.
+
+## Proactively use it (don't fall into shell-only mode)
+On a desktop host the tool is installed on, do NOT default to pure-terminal
+workflows when a GUI/visual-verification step is involved. Triggers:
+- **Confirming a UAC / permission prompt actually appeared** — `capture` the
+  desktop and look, instead of guessing whether an elevated launch succeeded.
+- **Driving a native app** the shell can't (File Explorer, Settings, a GUI
+  installer, tray apps).
+- **Verifying a visual state** the shell can't express (a window opened, an
+  icon appeared, an app is foreground).
+- **Cross-checking shell claims visually** — e.g. after mounting a disk,
+  `capture` File Explorer to confirm the new drive letter shows, as a second
+  verification channel alongside `Get-Volume`.
+- Privileged (admin) launches that popped a UAC prompt: use `capture` to confirm
+  the prompt actually appeared / the change took effect. For the safe elevated-launch
+  workflow itself (self-logging, re-verify-after-elevation), see the
+  `windows-elevated-actions` skill.
+Loop is ALWAYS: `capture` (mode=som) -> act by `element=` index -> re-`capture`
+to verify. A full audit once ran shell-only and never touched the desktop tool
+even though it was installed and would have helped verify elevation steps —
+don't repeat that.
+
 
 ## Going deeper — read the cua-driver skill pack
 
