@@ -58,14 +58,14 @@ DRAM frequency (XMP/DOCP), boot order, Secure Boot toggle, etc. are applied at P
   $secure=$m.Invoke($null,@($pass))
   $cred=New-Object System.Management.Automation.PSCredential($user,$secure)
   ```
-- `SkipCertificateCheck` does NOT exist in PowerShell 5.1 (it's PS 6+). To hit a self-signed HTTPS endpoint on this host (e.g. a TrueNAS web UI), bypass TLS validation with a custom callback:
+- `SkipCertificateCheck` does NOT exist in PowerShell 5.1 (it's PS 6+). To hit a self-signed HTTPS endpoint (e.g. an appliance web UI on your LAN), bypass TLS validation with a custom callback:
   ```powershell
   Add-Type @'
   using System.Net; using System.Security.Cryptography.X509Certificates;
   public class T { public static void I(){ ServicePointManager.ServerCertificateValidationCallback = delegate { return true; }; } }
   '@
   [T]::I()
-  Invoke-WebRequest -Uri 'https://192.168.1.7' -UseBasicParsing
+  Invoke-WebRequest -Uri 'https://host.example' -UseBasicParsing
   ```
 - UNC paths (`\\\\host\\share\\file`) typed inline or through bash get reinterpreted as drive paths (`C:\\host\\...`) and fail "does not exist". Put any UNC access in a `.ps1` file run with `-File`.
 - **`wsl.exe` output is UTF-16LE AND can HANG.** Two bugs in one:
@@ -80,6 +80,7 @@ DRAM frequency (XMP/DOCP), boot order, Secure Boot toggle, etc. are applied at P
   ($h | ForEach-Object { $_.ToString('x2') }) -join ''
   ```
   (Used 2026-07-11 to anchor audit evidence when Get-FileHash failed. Also note: `Get-FileHash` result can be silently swallowed by `$ErrorActionPreference='SilentlyContinue'`, so read `.Hash` explicitly or use the .NET path.)
+- **MSYS `ping` is UNRELIABLE on this host — use `Test-Connection` / `TcpClient`.** A bash `ping -c1 -W1 <ip>` sweep reported ALL 17 LAN hosts as DOWN, but PowerShell `Test-Connection -ComputerName <ip> -Count 1 -Quiet` confirmed every one UP (and the live ARP table showed them). The MSYS ping binary is non-functional here — do NOT trust bash `ping` for reachability. For liveness use `Test-Connection`; for port checks use a raw `System.Net.Sockets.TcpClient` with a 2s `AsyncWaitHandle.WaitOne` timeout (the `Test-NetConnection -AsJob` combo throws in PS 5.1). Seen 2026-07-11 during the ZQM-MESH neighbor audit.
 
 ## Templates / scripts / references
 - `templates/prompt-gated-admin-skeleton.ps1` - copy this for any audit/remediation script you hand the user.
