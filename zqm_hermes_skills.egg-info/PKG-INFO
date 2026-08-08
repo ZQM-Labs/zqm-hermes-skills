@@ -1,3 +1,16 @@
+Metadata-Version: 2.4
+Name: zqm-hermes-skills
+Version: 0.1.0
+Summary: Hermes skills distribution for ZQM operator workflows
+License-Expression: MIT
+Project-URL: Homepage, https://github.com/ZQM-Labs/zqm-hermes-skills
+Project-URL: Repository, https://github.com/ZQM-Labs/zqm-hermes-skills.git
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: zqm-intel-platforms>=0.1.0
+Dynamic: license-file
+
 # zqm-hermes-skills
 
 Shared Hermes skills snapshot for the ZQM Windows homelab and `ZQM-Computing` GitHub workflow.

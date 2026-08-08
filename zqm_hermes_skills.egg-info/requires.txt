@@ -1,0 +1,1 @@
+zqm-intel-platforms>=0.1.0

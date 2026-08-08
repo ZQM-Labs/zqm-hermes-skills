@@ -1,0 +1,9 @@
+LICENSE
+README.md
+pyproject.toml
+tests/test_smoke.py
+zqm_hermes_skills.egg-info/PKG-INFO
+zqm_hermes_skills.egg-info/SOURCES.txt
+zqm_hermes_skills.egg-info/dependency_links.txt
+zqm_hermes_skills.egg-info/requires.txt
+zqm_hermes_skills.egg-info/top_level.txt

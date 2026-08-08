@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=75", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "zqm-hermes-skills"
+version = "0.1.0"
+description = "Hermes skills distribution for ZQM operator workflows"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.11"
+dependencies = [
+    "zqm-intel-platforms>=0.1.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["zqm*", "skills*"]
+exclude = ["tests*"]
+
+[project.urls]
+Homepage = "https://github.com/ZQM-Labs/zqm-hermes-skills"
+Repository = "https://github.com/ZQM-Labs/zqm-hermes-skills.git"
