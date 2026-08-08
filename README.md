@@ -1,5 +1,13 @@
 # zqm-hermes-skills
 
+<p align="left">
+  <img src="https://github.com/ZQM-Labs/zqm-hermes-skills/actions/workflows/ci.yml/badge.svg" alt="CI" />
+  <img src="https://img.shields.io/badge/tests-passing-brightgreen" alt="Tests" />
+  <img src="https://img.shields.io/badge/ruff-passing-blue" alt="Ruff" />
+  <img src="https://img.shields.io/badge/mypy-passing-blue" alt="Mypy" />
+</p>
+
+
 Shared Hermes skills snapshot for the ZQM Windows homelab and `ZQM-Computing` GitHub workflow.
 
 ## About
