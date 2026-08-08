@@ -1,0 +1,8 @@
+requests>=2.31
+cryptography>=42.0
+defusedxml>=0.11
+google-auth>=2.29
+google-auth-oauthlib>=1.2
+google-api-python-client>=2.129
+flask>=3.0
+pytest>=8.3
