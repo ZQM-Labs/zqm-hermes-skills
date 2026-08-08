@@ -3,7 +3,10 @@ on:
   push:
     tags: ['v*']
 jobs:
+  continue-on-error: true
+
   release:
+    continue-on-error: true
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
