@@ -1,6 +1,6 @@
 # zqm-hermes-skills
 
-[![CI](https://github.com/ZQM-Labs/zqm-hermes-skills/actions/workflows/ci.yml/badge.svg)](https://github.com/ZQM-Labs/zqm-hermes-skills/actions/workflows/ci.yml) [![Tests](https://github.com/ZQM-Labs/zqm-hermes-skills/actions/workflows/tests.yml/badge.svg)](https://github.com/ZQM-Labs/zqm-hermes-skills/actions/workflows/tests.yml) [![Ruff](https://github.com/ZQM-Labs/zqm-hermes-skills/actions/workflows/ci.yml/badge.svg)](https://github.com/ZQM-Labs/zqm-hermes-skills/actions/workflows/ci.yml) [![mypy](https://github.com/ZQM-Labs/zqm-hermes-skills/actions/workflows/ci.yml/badge.svg)](https://github.com/ZQM-Labs/zqm-hermes-skills/actions/workflows/ci.yml)
+[![CI](https://img.shields.io/badge/CI-GitHub%20Actions-blue?logo=githubactions)dge.svg)](https://github.com/ZQM-Labs/zqm-hermes-skills/actions/workflows/ci.yml) [![Tests](https://github.com/ZQM-Labs/zqm-hermes-skills/actions/workflows/tests.yml/badge.svg)](https://github.com/ZQM-Labs/zqm-hermes-skills/actions/workflows/tests.yml) [![Ruff](https://github.com/ZQM-Labs/zqm-hermes-skills/actions/workflows/ci.yml/badge.svg)](https://github.com/ZQM-Labs/zqm-hermes-skills/actions/workflows/ci.yml) [![mypy](https://github.com/ZQM-Labs/zqm-hermes-skills/actions/workflows/ci.yml/badge.svg)](https://github.com/ZQM-Labs/zqm-hermes-skills/actions/workflows/ci.yml)
 
 
 Shared Hermes skills snapshot for the ZQM Windows homelab and `ZQM-Computing` GitHub workflow.
