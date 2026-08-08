@@ -1,0 +1,46 @@
+name: Purchase Request
+description: Submit a purchase request for a ZQM license or add-on.
+title: "purchase: <SKU> - <email>"
+labels: ["purchase"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        No KYC, no account required.
+        Read payment instructions first: [PAYMENT_INSTRUCTIONS.md](https://github.com/ZQM-Labs/zqm-attestation-toolkit/blob/main/PAYMENT_INSTRUCTIONS.md)
+  - type: input
+    id: sku
+    attributes:
+      label: SKU
+      description: ZQM-ATTEST-P-2026, ZQM-ATTEST-B-2026, ZQM-ATTEST-E-2026, or ZQM-ATTEST-F-2026
+      placeholder: ZQM-ATTEST-P-2026
+    validations:
+      required: true
+  - type: input
+    id: email
+    attributes:
+      label: Buyer email
+      description: Email used for the license ID and fulfillment delivery
+      placeholder: you@example.com
+    validations:
+      required: true
+  - type: input
+    id: txid
+    attributes:
+      label: Transaction ID
+      description: Crypto txid / payment reference for this purchase. Required for fulfillment.
+      placeholder: blockchain txid
+    validations:
+      required: true
+  - type: input
+    id: addons
+    attributes:
+      label: Add-ons
+      description: "Optional add-on SKUs: ZQM-ADD-MODULE, ZQM-ADD-REPORT, ZQM-ADD-SIEM. Comma-separate if multiple."
+      placeholder: "ZQM-ADD-MODULE, ZQM-ADD-SIEM"
+    validations:
+      required: false
+  - type: markdown
+    attributes:
+      value: |
+        Payment methods: see PAYMENT_INSTRUCTIONS.md
