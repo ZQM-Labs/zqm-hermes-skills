@@ -3,12 +3,10 @@ on:
   push:
     tags: ['v*']
 jobs:
-  continue-on-error: true
-
   release:
-    continue-on-error: true
     runs-on: ubuntu-latest
+    continue-on-error: true
     steps:
       - uses: actions/checkout@v4
-      - name: Create release
+      - name: Release
         run: echo "Release ${{ github.ref }}"
