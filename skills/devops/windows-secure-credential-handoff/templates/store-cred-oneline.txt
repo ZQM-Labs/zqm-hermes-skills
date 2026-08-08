@@ -1,8 +1,0 @@
-# STORE one-liner — run in an INTERACTIVE PowerShell as the human user.
-# Typing at the Get-Credential prompt is HIDDEN and nothing is sent to chat.
-# Creates C:\zqm\cred, encrypts the password with machine-scope DPAPI
-# (decryptable by ANY local account on this PC, incl. the agent's account),
-# writes {user, data(base64)} JSON, and HONESTLY reports success.
-# Replace <name> (e.g. garden-admin, node-local) per secret.
-
-$c=Get-Credential -Message "Credential (hidden, not sent to chat):"; New-Item -ItemType Directory -Force -Path C:\zqm\cred | Out-Null; $p=$c.GetNetworkCredential().Password; $b=[System.Text.Encoding]::UTF8.GetBytes($p); $e=[System.Security.Cryptography.ProtectedData]::Protect($b,$null,'LocalMachine'); [pscustomobject]@{user=$c.UserName;data=[Convert]::ToBase64String($e)} | ConvertTo-Json | Set-Content C:\zqm\cred\zqm-cred-<name>.json -Force; if (Test-Path C:\zqm\cred\zqm-cred-<name>.json) { Write-Host ("OK WROTE C:\zqm\cred\zqm-cred-<name>.json user="+$c.UserName) } else { Write-Host "WRITE FAILED" }

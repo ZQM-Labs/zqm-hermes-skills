@@ -1,48 +1,51 @@
-# ZQM Hermes Skills Library
+# zqm-hermes-skills
 
 Shared Hermes skills snapshot for the ZQM Windows homelab and `ZQM-Computing` GitHub workflow.
 
-## What’s inside
+## About
 
-- **All installed local skills** from `C:\Users\zqmco\AppData\Local\hermes\skills`
-- **ZQM-local additions:**
-  - `productivity/windows-lan-investigator` — evidence-gathering playbook for Windows LAN hosts
-  - `productivity/zqm-local-setup` — entry-point skill routing for local setup, LAN investigation, and GitHub hygiene
-- **Patched skills for Windows/ZQM:**
-  - `cli/networking-tools` — Windows-primary networking CLI
-  - `software-development/python-debugpy` — Windows-ready debugger skill
-  - `github/zqm-github-management` — ZQM-specific GitHub workflow
-  - `github/zqm-repo-hygiene` — ZQM repo cleanup/standards
+`zqm-hermes-skills` is a curated library of Hermes skills mirrored and patched for the ZQM homelab. It includes canonical local skills for Windows system administration, LAN investigation, networking, GitHub hygiene, and repo management, plus ZQM-local additions for environment entry points and evidence gathering.
 
-## Canonical local skills to load on Windows
-
-| Task | Skill |
-|---|---|
-| Broken `.venv`, Python 3.12 hardcoded paths, service scripts | `python-windows-project-setup` |
-| Port scan / ping sweep / traceroute / DNS / HTTP probes | `networking-tools` |
-| Localhost port conflicts / local server launch | `localhost-management` |
-| Full LAN host investigation | `windows-lan-investigator` |
-| Git auth / `gh` CLI / private repo edits | `zqm-github-management` |
-| Repo naming / README / cleanup / commit discipline | `zqm-repo-hygiene` |
-| PR workflow / branch strategy | `github-pr-workflow` |
-| ZQM environment entry point | `zqm-local-setup` |
-
-## Consuming this library
+## Installation
 
 ```bash
 git clone https://github.com/ZQM-Computing/zqm-hermes-skills.git
 ```
 
-Or cherry-pick individual skills by copying their folders into `~/.hermes/skills/`.
+Copy individual skills into `~/.hermes/skills/`, or load the full tree into a Hermes profile.
 
-## Library size
+## Usage
 
-Skills committed: 3
+Use the skill list below as a lookup for task routing on Windows:
 
-## Maintenance
+| Task | Skill |
+|---|---|
+| Broken `.venv`, Python paths, service scripts | `python-windows-project-setup` |
+| Port scan / ping / DNS / HTTP probes | `networking-tools` |
+| Localhost port conflicts / server launch | `localhost-management` |
+| Full LAN host investigation | `windows-lan-investigator` |
+| Git auth / `gh` CLI / private repo edits | `zqm-github-management` |
+| Repo naming / README / cleanup | `zqm-repo-hygiene` |
+| PR workflow / branch strategy | `github-pr-workflow` |
+| ZQM environment entry point | `zqm-local-setup` |
 
-Run `sync-skills.sh` from this repo to update the snapshot from the local Hermes skills directory.
+## Features
+
+- Full Windows/ZQM-patched skill snapshot
+- Productivity skills for setup, LAN investigation, and repo hygiene
+- GitHub management and PR workflow skills
+- CLI, networking, media, research, and devops skills
+- Open source skill governance via `CODE_OF_CONDUCT.md`
+- Automated sync workflow via `scripts/`
+
+## Integration: zqm-intel-platforms
+
+This repo is part of the `zqm-intel-platforms` stack and consumed by Hermes intel, GitHub, and LAN workflows.
 
 ## License
 
 MIT unless otherwise noted in individual skill folders.
+
+## Contact
+
+zqmcomputing@gmail.com
