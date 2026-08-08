@@ -1,12 +1,17 @@
-name: Security
+name: Security Scan
 on:
   push:
-    branches: [ main, master ]
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+permissions:
+  contents: read
 jobs:
-  security:
+  gitleaks:
     runs-on: ubuntu-latest
-    continue-on-error: true
     steps:
       - uses: actions/checkout@v7
-      - name: Security scan
-        run: echo "Security scan passed"
+      - name: Run gitleaks
+        uses: gitleaks/gitleaks-action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
