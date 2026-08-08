@@ -1,10 +1,12 @@
+title = "gitleaks config"
+
+[extend]
+useDefault = true
+
 [allowlist]
-description = "Allow GitHub Actions secret references and workflow metadata"
-regexes = [
-  '''\$\{\{\s*secrets\.GITHUB_TOKEN\s*\}\}''',
-  '''\$\{\{\s*github\.token\s*\}\}''',
-  '''GITHUB_TOKEN.*\$\{\{''',
-]
+description = "allowlist for test fixtures and docs"
 paths = [
-  '''\.github/workflows/''',
+  '''tests/''',
+  '''docs/''',
+  '''\.example''',
 ]

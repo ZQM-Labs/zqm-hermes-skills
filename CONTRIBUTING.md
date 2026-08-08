@@ -1,27 +1,10 @@
-# Contributing to ZQM Projects
+# Contributing
 
-Thank you for your interest in contributing!
+## Workflow
+1. Open an issue describing the change.
+2. Keep diffs minimal; tests first.
+3. PRs must pass CI before review.
 
-## How to Contribute
-
-1. Fork the repository
-2. Create a feature branch ()
-3. Commit your changes ()
-4. Push to the branch ()
-5. Open a Pull Request
-
-## Code Standards
-
-- Follow existing code style
-- Add tests for new features
-- Update documentation as needed
-
-## Reporting Issues
-
-- Use GitHub Issues for bug reports
-- Include steps to reproduce
-- Specify your environment
-
-## Questions?
-
-Open an issue or discussion in the repository.
+## Standards
+- MIT/Apache-2.0/BSD-3 surface only; no AGPL/BSL/CPAL in deliverables.
+- Signed provenance for attestation artifacts.
