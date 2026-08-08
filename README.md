@@ -49,3 +49,11 @@ MIT unless otherwise noted in individual skill folders.
 ## Contact
 
 zqmcomputing@gmail.com
+
+## Related Repositories
+
+- [ZQM-Computing/hermes-agent](https://github.com/ZQM-Computing/hermes-agent) — upstream Hermes CLI runtime and mesh agent
+- [ZQM-Computing/hermes-config](https://github.com/ZQM-Computing/hermes-config) — Hermes profiles, skills, and MCP server configs
+- [ZQM-Computing/mesh-forensics](https://github.com/ZQM-Computing/mesh-forensics) — ZQM LAN evidence collection and incident response
+- [ZQM-Computing/swarm](https://github.com/ZQM-Computing/swarm) — multi-agent mesh orchestration for distributed Hermes workloads
+- [ZQM-Labs/ollama-bridge](https://github.com/ZQM-Labs/ollama-bridge) — Ollama MCP bridge for local inference
